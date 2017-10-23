@@ -1,4 +1,9 @@
 class RestaurantsController < ApplicationController
+	before_action :authenticate_owner!, except: [:index]
+	before_action :set_restaurant, only: [:show, :edit, :update, :destroy]
+	before_action :check_correct_owner, only: [:edit, :update, :destroy]
+
+
 	def index
 		@restaurant = Restaurant.all
 	end 
@@ -17,7 +22,7 @@ class RestaurantsController < ApplicationController
 
 	def create
 		@restaurant = Restaurant.new(restaurant_params)
-
+		@restaurant.owner = current_owner
 		if @restaurant.save
 	    	redirect_to @restaurant
 	  else
@@ -42,10 +47,22 @@ def destroy
 		format.json { head :no_content}
 
 	redirect_to restaurants_path
-end
+	end
 end
 
 private
+
+def set_restaurant
+	@restaurant = Restaurant.find(params[:id])
+end
+
+def check_correct_owner
+	unless current_owner && @restaurant.owner == current_owner
+		redirect_to restaurants_url, notice: 'You can\'t edit that painting'
+	end 
+end 
+
+
 	def restaurant_params
 		params.require(:restaurant).permit(:name, :cuisine, :address)
   end
