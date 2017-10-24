@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  Name: MyString
+  Reservation_Date_Time: 2017-10-24 11:32:45
+  Guests: 1
+  restaurant: one
+
+two:
+  Name: MyString
+  Reservation_Date_Time: 2017-10-24 11:32:45
+  Guests: 1
+  restaurant: two

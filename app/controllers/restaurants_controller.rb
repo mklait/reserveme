@@ -9,7 +9,7 @@ class RestaurantsController < ApplicationController
 	end 
 
 	def show
-		@restaurant = Restaurant.find(params[:id])
+		@reservations = Reservation.where(restaurant: @restaurant)
 	end 
 
 	def new

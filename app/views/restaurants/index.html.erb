@@ -12,9 +12,12 @@
 			<td><%= restaurant.address %></td>
 			<td><%= link_to "show", restaurant_path(restaurant) %></td>
 			<td><%= link_to "Edit", edit_restaurant_path(restaurant) %></td>
+			<% if restaurant.owner == current_owner %>
+			
 			<td><%= link_to 'New restaurant', new_restaurant_path %></td>
 			<td><%= link_to 'Destroy', restaurant, method: :delete, data: {confirm: 'Are you sure?'} %></td>
 		</tr>
 	<% end %>
 	</table>
 
+<% end %>

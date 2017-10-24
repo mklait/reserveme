@@ -1,0 +1,33 @@
+<p id="notice"><%= notice %></p>
+<h1> Your Restaurants </h1>
+
+<table>
+	<thead>
+		<tr>
+				<th>
+				Name
+				</th>
+				<th>Cuisine</th>
+				<th>Address</th>
+					</tr>
+						</thead>
+			<body>
+			<% @restaurants.each do |restaurants| %>
+
+			<tr>
+			<td>restaurant.name</td>
+			<td>restaurant.cuisine</td>
+			<td>restaurant.address</td>
+
+</td>
+
+<td> <%= link_to 'Show', restaurant %></td>
+<% if restaurant.owner == current_owner %>
+<td><%= link_to 'Edit', edit_restaurant_path(restaurant) %></td>
+<% end %>
+</tr>
+<% end %>
+</body>
+</table>
+
+<%= link_to 'New Restaurant', new_restaurant_path %>
